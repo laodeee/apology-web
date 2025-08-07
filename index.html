@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maaf Ya </title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #ffe6f0;
+      color: #d63384;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    #buttons {
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      transition: 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    .no {
+      background-color: #ff99c8;
+      color: white;
+      position: relative;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    #thankyou {
+      display: none;
+      margin-top: 30px;
+    }
+
+    #thankyou img {
+      width: 220px;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Maaf ya... 😢</h1>
+  <p>atah minta maaf karena ngebuat indah jadi badmood semalam. Boleh ga dimaafin?</p>
+
+  <div id="buttons">
+    <button class="btn yes" onclick="accept()">Maafnya Diterima 💗</button>
+    <button class="btn no" id="noBtn" onmouseover="moveButton()">Engga!! </button>
+  </div>
+
+  <div id="thankyou">
+    <h2>Yey, Thankies! 😍</h2>
+    <img src="https://media.tenor.com/m8vwQqfk0I4AAAAi/peach-and-goma-cuddle.gif" alt="Cute Happy GIF" />
+  </div>
+
+  <script>
+    function accept() {
+      document.getElementById("thankyou").style.display = "block";
+      document.getElementById("buttons").style.display = "none";
+    }
+
+    function moveButton() {
+      const noBtn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 60);
+      noBtn.style.position = "absolute";
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+  </script>
+</body>
+</html>
