@@ -76,7 +76,7 @@
 
   <div id="buttons">
     <button class="btn yes" onclick="accept()">Maafnya Diterima 💗</button>
-    <button class="btn no" id="noBtn" onmouseover="moveButton()">Engga!!</button>
+    <button class="btn no" id="noBtn">Engga!!</button>
   </div>
 
   <div id="thankyou">
@@ -85,16 +85,15 @@
   </div>
 
   <script>
+    const noBtn = document.getElementById("noBtn");
+
     function accept() {
       document.getElementById("thankyou").style.display = "block";
       document.getElementById("buttons").style.display = "none";
     }
 
     function moveButton() {
-      const noBtn = document.getElementById("noBtn");
       const container = document.getElementById("buttons");
-      const containerRect = container.getBoundingClientRect();
-
       const maxX = container.clientWidth - noBtn.offsetWidth;
       const maxY = container.clientHeight - noBtn.offsetHeight;
 
@@ -104,6 +103,15 @@
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
     }
+
+    // Menangani mouse (laptop/PC)
+    noBtn.addEventListener("mouseenter", moveButton);
+
+    // Menangani layar sentuh (HP)
+    noBtn.addEventListener("touchstart", function (e) {
+      e.preventDefault(); // agar tidak langsung klik
+      moveButton();
+    });
   </script>
 </body>
 </html>
