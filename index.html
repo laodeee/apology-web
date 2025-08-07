@@ -3,50 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maaf Ya</title>
+  <title>Maaf Ya </title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding: 30px 15px;
+      padding: 40px 20px;
       background-color: #ffe6f0;
       color: #d63384;
-      overflow-x: hidden;
-      position: relative;
     }
 
     h1 {
       font-size: 28px;
-      margin-bottom: 15px;
     }
 
     p {
       font-size: 18px;
-      max-width: 500px;
-      margin: 0 auto 25px;
+      max-width: 400px;
+      margin: 0 auto;
     }
 
     #buttons {
-      margin-top: 20px;
+      margin-top: 30px;
       position: relative;
-      height: 150px; /* Memberi ruang agar tombol tidak naik ke tulisan */
+      height: 150px;
     }
 
     .btn {
-      padding: 14px 22px;
+      padding: 12px 20px;
       margin: 10px;
       font-size: 16px;
       cursor: pointer;
       border: none;
       border-radius: 10px;
       transition: 0.3s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .yes {
@@ -58,8 +51,6 @@
       background-color: #ff99c8;
       color: white;
       position: absolute;
-      top: 0;
-      left: 0;
     }
 
     .btn:hover {
@@ -76,21 +67,6 @@
       width: 220px;
       margin-top: 20px;
       border-radius: 12px;
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 24px;
-      }
-
-      p {
-        font-size: 16px;
-      }
-
-      .btn {
-        font-size: 15px;
-        padding: 12px 20px;
-      }
     }
   </style>
 </head>
@@ -116,11 +92,11 @@
 
     function moveButton() {
       const noBtn = document.getElementById("noBtn");
-      const btnsContainer = document.getElementById("buttons");
-      const containerRect = btnsContainer.getBoundingClientRect();
+      const container = document.getElementById("buttons");
+      const containerRect = container.getBoundingClientRect();
 
-      const maxX = containerRect.width - noBtn.offsetWidth;
-      const maxY = containerRect.height - noBtn.offsetHeight;
+      const maxX = container.clientWidth - noBtn.offsetWidth;
+      const maxY = container.clientHeight - noBtn.offsetHeight;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
