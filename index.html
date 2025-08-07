@@ -1,117 +1,128 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maaf Ya </title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #ffe6f0;
-      color: #d63384;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maaf Ya</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #ffe6f0;
+        color: #d63384;
+      }
 
-    h1 {
-      font-size: 28px;
-    }
+      h1 {
+        font-size: 28px;
+      }
 
-    p {
-      font-size: 18px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
+      p {
+        font-size: 18px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
 
-    #buttons {
-      margin-top: 30px;
-      position: relative;
-      height: 150px;
-    }
+      #buttons {
+        margin-top: 30px;
+        position: relative;
+        height: 200px; /* beri tinggi lebih biar tombol bisa bebas bergerak */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .btn {
+        padding: 12px 20px;
+        margin: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        transition: 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+      }
 
-    .btn {
-      padding: 12px 20px;
-      margin: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 10px;
-      transition: 0.3s;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 2;
-    }
+      .yes {
+        background-color: #ff69b4;
+        color: white;
+      }
 
-    .yes {
-      background-color: #ff69b4;
-      color: white;
-    }
+      .no {
+        background-color: #ff99c8;
+        color: white;
+        position: absolute;
+        top: 60px; /* posisi default di bawah tombol 'yes' */
+        left: 0;
+      }
 
-    .no {
-      background-color: #ff99c8;
-      color: white;
-      position: absolute;
-    }
+      .btn:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+      }
 
-    .btn:hover {
-      opacity: 0.9;
-      transform: scale(1.05);
-    }
+      #thankyou {
+        display: none;
+        margin-top: 30px;
+      }
 
-    #thankyou {
-      display: none;
-      margin-top: 30px;
-    }
+      #thankyou img {
+        width: 220px;
+        margin-top: 20px;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Maaf yaa... 😢</h1>
+    <p>
+      atah minta maaf karena ngebuat indah jadi badmood semalam. Boleh ya
+      dimaafin?
+    </p>
 
-    #thankyou img {
-      width: 220px;
-      margin-top: 20px;
-      border-radius: 12px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Maaf yaa... 😢</h1>
-  <p>atah minta maaf karena ngebuat indah jadi badmood semalam. Boleh ya dimaafin?</p>
+    <div id="buttons">
+      <button class="btn yes" onclick="accept()">Maafnya Diterima 💗</button>
+      <button class="btn no" id="noBtn">Engga!!</button>
+    </div>
 
-  <div id="buttons">
-    <button class="btn yes" onclick="accept()">Maafnya Diterima 💗</button>
-    <button class="btn no" id="noBtn">Engga!!</button>
-  </div>
+    <div id="thankyou">
+      <h2>Yey, Thankies! 😍</h2>
+      <img
+        src="https://media.tenor.com/m8vwQqfk0I4AAAAi/peach-and-goma-cuddle.gif"
+        alt="Cute Happy GIF"
+      />
+    </div>
 
-  <div id="thankyou">
-    <h2>Yey, Thankies! 😍</h2>
-    <img src="https://media.tenor.com/m8vwQqfk0I4AAAAi/peach-and-goma-cuddle.gif" alt="Cute Happy GIF" />
-  </div>
+    <script>
+      const noBtn = document.getElementById("noBtn");
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
+      function accept() {
+        document.getElementById("thankyou").style.display = "block";
+        document.getElementById("buttons").style.display = "none";
+      }
 
-    function accept() {
-      document.getElementById("thankyou").style.display = "block";
-      document.getElementById("buttons").style.display = "none";
-    }
+      function moveButton() {
+        const container = document.getElementById("buttons");
+        const maxX = container.clientWidth - noBtn.offsetWidth;
+        const maxY = container.clientHeight - noBtn.offsetHeight;
 
-    function moveButton() {
-      const container = document.getElementById("buttons");
-      const maxX = container.clientWidth - noBtn.offsetWidth;
-      const maxY = container.clientHeight - noBtn.offsetHeight;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+      }
 
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-    }
+      // Menangani mouse (laptop/PC)
+      noBtn.addEventListener("mouseenter", moveButton);
 
-    // Menangani mouse (laptop/PC)
-    noBtn.addEventListener("mouseenter", moveButton);
-
-    // Menangani layar sentuh (HP)
-    noBtn.addEventListener("touchstart", function (e) {
-      e.preventDefault(); // agar tidak langsung klik
-      moveButton();
-    });
-  </script>
-</body>
+      // Menangani layar sentuh (HP)
+      noBtn.addEventListener("touchstart", function (e) {
+        e.preventDefault(); // agar tidak langsung klik
+        moveButton();
+      });
+    </script>
+  </body>
 </html>
