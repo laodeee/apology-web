@@ -3,38 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maaf Ya </title>
+  <title>Maaf Ya</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       text-align: center;
-      padding: 40px;
+      padding: 30px 15px;
       background-color: #ffe6f0;
       color: #d63384;
+      overflow-x: hidden;
+      position: relative;
     }
 
     h1 {
-      color: #d63384;
-      font-size: 36px;
+      font-size: 28px;
+      margin-bottom: 15px;
     }
 
     p {
-      font-size: 20px;
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto 25px;
     }
 
     #buttons {
-      margin-top: 30px;
+      margin-top: 20px;
+      position: relative;
+      height: 150px; /* Memberi ruang agar tombol tidak naik ke tulisan */
     }
 
     .btn {
-      padding: 15px 25px;
+      padding: 14px 22px;
       margin: 10px;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
       border: none;
       border-radius: 10px;
       transition: 0.3s;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
     }
 
     .yes {
@@ -45,7 +57,9 @@
     .no {
       background-color: #ff99c8;
       color: white;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     .btn:hover {
@@ -63,6 +77,21 @@
       margin-top: 20px;
       border-radius: 12px;
     }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 15px;
+        padding: 12px 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -71,7 +100,7 @@
 
   <div id="buttons">
     <button class="btn yes" onclick="accept()">Maafnya Diterima 💗</button>
-    <button class="btn no" id="noBtn" onmouseover="moveButton()">Engga!! </button>
+    <button class="btn no" id="noBtn" onmouseover="moveButton()">Engga!!</button>
   </div>
 
   <div id="thankyou">
@@ -87,9 +116,15 @@
 
     function moveButton() {
       const noBtn = document.getElementById("noBtn");
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 60);
-      noBtn.style.position = "absolute";
+      const btnsContainer = document.getElementById("buttons");
+      const containerRect = btnsContainer.getBoundingClientRect();
+
+      const maxX = containerRect.width - noBtn.offsetWidth;
+      const maxY = containerRect.height - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
     }
